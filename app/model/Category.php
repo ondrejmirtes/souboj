@@ -11,10 +11,16 @@ class Category extends BaseEntity
 
 	/**
 	 * @var \Category
-	 * @ManyToOne(targetEntity="Category")
+	 * @ManyToOne(targetEntity="Category", inversedBy="children")
 	 * @JoinColumn(name="category_id")
 	 */
 	private $parent;
+
+	/**
+	 * @var \Category[]
+	 * @OneToMany(targetEntity="Category", mappedBy="parent")
+	 */
+	private $children;
 
 	/**
 	 * @var string
@@ -28,6 +34,11 @@ class Category extends BaseEntity
 	 */
 	private $url;
 
+	public function __construct()
+	{
+		$this->children = new \Doctrine\Common\Collections\ArrayCollection();
+	}
+
 	public function getParent()
 	{
 		return $this->parent;
@@ -36,6 +47,11 @@ class Category extends BaseEntity
 	public function setParent(Category $category = NULL)
 	{
 		$this->parent = $category;
+	}
+
+	public function getChildren()
+	{
+		return $this->children;
 	}
 
 	public function getName()

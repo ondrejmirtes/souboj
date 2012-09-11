@@ -1,32 +1,33 @@
-{**
- * My Application layout template.
- *
- * @param string   $basePath web base path
- * @param string   $robots   tell robots how to index the content of a page (optional)
- * @param array    $flashes  flash messages
- *}
-
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta name="description" content="Nette Framework web application skeleton">
-	<meta name="robots" content="{$robots}" n:ifset="$robots">
-
-	<title>{#title|striptags|upper}Nette Application Skeleton{/#}</title>
-
-	<link rel="stylesheet" media="screen,projection,tv" href="{$basePath}/css/screen.css">
-	<link rel="stylesheet" media="print" href="{$basePath}/css/print.css">
-	<link rel="shortcut icon" href="{$basePath}/favicon.ico">
-
 	<script src="http://code.jquery.com/jquery-1.8.1.min.js"></script>
 	<script src="{$basePath}/js/netteForms.js"></script>
-	{#head}{/#}
 </head>
 
 <body>
-	<script> document.body.className+=' js' </script>
 
+	<ul>
+		<li><a n:href="Homepage:">Homepage</a></li>
+	</ul>
+
+	<h2>Kategorie</h2>
+	{block #category}
+		{if count($categories) > 0}
+			<ul>
+				{foreach $categories as $category}
+					<li>
+						{ifCurrent Category: $category->id}
+							<strong>{$category->name}</strong>
+						{else}
+							<a n:href="Category: $category->id">{$category->name}</a>
+						{/ifCurrent}
+						{include #category, 'categories' => $category->children}
+					</li>
+				{/foreach}
+			</ul>
+		{/if}
+	{/block}
 	<div n:foreach="$flashes as $flash" class="flash {$flash->type}">{$flash->message}</div>
 
 	{include #content}
