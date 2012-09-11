@@ -35,6 +35,9 @@ class ProductPresenter extends BasePresenter
 		$form->addSelect('category', 'Category', $this->getCategories())
 			->setPrompt('Select a category');
 
+		$form->addText('deliveryDate', 'Delivery date')
+			->addRule(Form::MAX_LENGTH, 'Delivery date must be %d characters long at max.', 100);
+
 		$form->addSubmit('submit', 'Save');
 		$form->onSuccess[] = array($this, 'submitAddForm');
 
@@ -76,6 +79,7 @@ class ProductPresenter extends BasePresenter
 			'price' => $product->price,
 			'visible' => $product->visible,
 			'category' => $product->category ? $product->category->id : NULL,
+			'deliveryDate' => $product->deliveryDate,
 		));
 	}
 
@@ -123,6 +127,8 @@ class ProductPresenter extends BasePresenter
 		} else {
 			$product->setCategory(NULL);
 		}
+
+		$product->setDeliveryDate($values['deliveryDate']);
 	}
 
 	public function renderDelete($id)

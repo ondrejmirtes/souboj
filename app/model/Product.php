@@ -45,6 +45,12 @@ class Product extends BaseEntity
 	private $category;
 
 	/**
+	 * @var string
+	 * @Column(length=50, nullable=true)
+	 */
+	private $deliveryDate;
+
+	/**
 	 * @var OrderItem[]
 	 * @OneToMany(targetEntity="OrderItem", mappedBy="product")
 	 */
@@ -114,6 +120,16 @@ class Product extends BaseEntity
 	public function setCategory(Category $category = NULL)
 	{
 		$this->category = $category;
+	}
+
+	public function getDeliveryDate()
+	{
+		return $this->deliveryDate;
+	}
+
+	public function setDeliveryDate($deliveryDate)
+	{
+		$this->deliveryDate = $deliveryDate;
 	}
 
 	public function getOrders()
