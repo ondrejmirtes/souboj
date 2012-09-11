@@ -7,17 +7,6 @@ use Nette\Application\UI\Form;
 class ProductPresenter extends BasePresenter
 {
 
-	/**
-	 * @var \Doctrine\ORM\EntityManager
-	 */
-	private $em;
-
-	protected function startup()
-	{
-		parent::startup();
-		$this->em = $this->context->em;
-	}
-
 	public function renderDefault()
 	{
 		$this->template->products = $this->em->getRepository('Product')->findAll();

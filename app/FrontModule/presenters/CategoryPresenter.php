@@ -56,17 +56,4 @@ class CategoryPresenter extends BasePresenter
 		)));
 	}
 
-	public function getProductCount($productId)
-	{
-		$product = $this->em->getRepository('Product')->findOneBy(array(
-			'id' => $productId,
-			'visible' => TRUE,
-		));
-		if ($product === NULL) {
-			throw new \Nette\Application\BadRequestException();
-		}
-
-		return count($product->getOrders());
-	}
-
 }

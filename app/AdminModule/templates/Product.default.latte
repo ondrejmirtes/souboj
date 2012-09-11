@@ -6,6 +6,17 @@
 
 <ul>
 	{foreach $products as $product}
-		<li><a n:href="edit $product->id">{$product->name}</a> (<a n:href="delete $product->id">delete</a>)</li>
+		<li><a n:href="edit $product->id">{$product->name}</a> (ordered <span class="orderCount" data-href="{link :Front:Category:productCount $product->id}">{$presenter->getProductCount($product->id)}</span> times) (<a n:href="delete $product->id">delete</a>) </li>
 	{/foreach}
 </ul>
+
+<script type="text/javascript">
+setInterval(function() {
+	$('.orderCount').each(function() {
+		var self = $(this);
+		$.get(self.attr('data-href'), function(data) {
+			self.text(data['count']);
+		});
+	});
+}, 3000);
+</script>

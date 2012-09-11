@@ -8,14 +8,6 @@ namespace FrontModule;
 abstract class BasePresenter extends \BasePresenter
 {
 
-	protected $em;
-
-	protected function startup()
-	{
-		parent::startup();
-		$this->em = $this->context->em;
-	}
-
 	protected function beforeRender()
 	{
 		parent::beforeRender();

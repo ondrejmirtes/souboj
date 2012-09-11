@@ -8,17 +8,6 @@ use Nette\Utils\Strings;
 class UserPresenter extends BasePresenter
 {
 
-	/**
-	 * @var \Doctrine\ORM\EntityManager
-	 */
-	private $em;
-
-	protected function startup()
-	{
-		parent::startup();
-		$this->em = $this->context->em;
-	}
-
 	public function renderDefault()
 	{
 		$this->template->users = $this->em->getRepository('User')->findAll();
