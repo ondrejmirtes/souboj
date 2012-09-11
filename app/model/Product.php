@@ -44,9 +44,16 @@ class Product extends BaseEntity
 	 */
 	private $category;
 
+	/**
+	 * @var OrderItem[]
+	 * @OneToMany(targetEntity="OrderItem", mappedBy="product")
+	 */
+	private $orders;
+
 	public function __construct()
 	{
 		$this->visible = FALSE;
+		$this->orders = new \Doctrine\Common\Collections\ArrayCollection();
 	}
 
 	public function getAbout()
@@ -107,6 +114,11 @@ class Product extends BaseEntity
 	public function setCategory(Category $category = NULL)
 	{
 		$this->category = $category;
+	}
+
+	public function getOrders()
+	{
+		return $this->orders->toArray();
 	}
 
 }

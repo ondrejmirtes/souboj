@@ -49,4 +49,24 @@ class CategoryPresenter extends BasePresenter
 		}
 	}
 
+	public function actionProductCount($productId)
+	{
+		$this->sendResponse(new \Nette\Application\Responses\JsonResponse(array(
+			'count' => $this->getProductCount($productId),
+		)));
+	}
+
+	public function getProductCount($productId)
+	{
+		$product = $this->em->getRepository('Product')->findOneBy(array(
+			'id' => $productId,
+			'visible' => TRUE,
+		));
+		if ($product === NULL) {
+			throw new \Nette\Application\BadRequestException();
+		}
+
+		return count($product->getOrders());
+	}
+
 }

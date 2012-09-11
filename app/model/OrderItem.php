@@ -28,7 +28,7 @@ class OrderItem extends BaseEntity
 
 	/**
 	 * @var \Product
-	 * @ManyToOne(targetEntity="Product")
+	 * @ManyToOne(targetEntity="Product", inversedBy="orders")
 	 * @JoinColumn(nullable=false)
 	 */
 	private $product;
