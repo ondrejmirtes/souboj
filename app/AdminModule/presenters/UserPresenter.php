@@ -33,7 +33,7 @@ class UserPresenter extends BasePresenter
 		$form->addText('username', 'Username')
 			->setRequired('Username is required')
 			->addRule(function($control) use ($em, $that) {
-				$value = Strings::webalize($control->getValue());
+				$value = $control->value;
 				$user = $em->getRepository('User')->findOneByUsername($value);
 				return $user === NULL
 					|| $user->id == $that->getParameter('id');
