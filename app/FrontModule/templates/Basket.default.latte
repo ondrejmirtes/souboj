@@ -1,0 +1,18 @@
+{block #content}
+
+<h1>Basket</h1>
+
+{form removeForm}
+
+{if is_array($items) && count($items) > 0}
+	<ul>
+		{foreach $items as $productId => $amount}
+			{var key => 'remove' . $productId}
+			<li>{$presenter->getProduct($productId)->name} ({$amount}x) {input $key}</li>
+		{/foreach}
+	</ul>
+{else}
+	<p>Basket is empty.</p>
+{/if}
+
+{/form}
