@@ -3,6 +3,8 @@
 /**
  * My Application bootstrap file.
  */
+use Doctrine\ORM\Tools\Setup;
+use Doctrine\ORM\EntityManager;
 use Nette\Application\Routers\Route;
 
 
@@ -25,13 +27,24 @@ $configurator->createRobotLoader()
 	->register();
 
 // Create Dependency Injection container from config.neon file
-$configurator->addConfig(__DIR__ . '/config/config.neon');
+$configurator->addConfig(__DIR__ . '/config/config.neon', FALSE)
+	->addConfig(__DIR__ . '/config/config.local.neon', FALSE);
 $container = $configurator->createContainer();
 
 // Setup router
 $container->router[] = new Route('index.php', 'Homepage:default', Route::ONE_WAY);
 $container->router[] = new Route('<presenter>/<action>[/<id>]', 'Homepage:default');
 
+// Doctrine EM
+$paths = array(__DIR__ . '/model');
+$isDevMode = TRUE;
+
+$config = Setup::createAnnotationMetadataConfiguration($paths, $isDevMode);
+$em = EntityManager::create($container->parameters['database'], $config);
+
+$container->addService('em', $em);
 
 // Configure and run the application!
-$container->application->run();
+if (!defined('CONSOLE')) {
+	$container->application->run();
+}

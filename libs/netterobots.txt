@@ -1,0 +1,5 @@
+Disallow: Doctrine/tests
+Disallow: Doctrine/lib/vendor/Symfony/Component/Console/Tests
+Disallow: Doctrine/lib/vendor/Symfony/Component/Yaml/Tests
+Disallow: Doctrine/lib/vendor/doctrine-common/tests
+Disallow: Doctrine/lib/vendor/doctrine-dbal/tests

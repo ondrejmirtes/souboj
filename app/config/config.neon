@@ -4,33 +4,27 @@
 # If you don't protect this directory from direct web access, anybody will be able to see your passwords.
 # http://nette.org/security-warning
 #
-common:
-	parameters:
+parameters:
 
-	php:
-		date.timezone: Europe/Prague
-		# zlib.output_compression: yes
+php:
+	date.timezone: Europe/Prague
+	# zlib.output_compression: yes
 
-	nette:
-		application:
-			errorPresenter: Error
+nette:
+	application:
+		errorPresenter: Error
 
-		database:
-			dsn: 'mysql:host=localhost;dbname=test'
-			user:
-			password:
+	database:
+		dsn: 'mysql:host=localhost;dbname=test'
+		user:
+		password:
 
-		session:
-			expiration: 14 days
-
-
-	services:
-		authenticator: Authenticator
+	session:
+		expiration: 14 days
 
 
-	factories:
+services:
+	authenticator: Authenticator
 
 
-production < common:
-
-development < common:
+factories:

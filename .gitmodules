@@ -1,3 +1,6 @@
 [submodule "libs/Nette"]
 	path = libs/Nette
 	url = /Users/www/souboj/nette/
+[submodule "libs/Doctrine"]
+	path = libs/Doctrine
+	url = /Users/www/souboj/doctrine2/
