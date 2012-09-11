@@ -11,6 +11,8 @@
 			<li>{$presenter->getProduct($productId)->name} ({$amount}x) {input $key}</li>
 		{/foreach}
 	</ul>
+
+	<a n:href="placeOrder">Place an order</a>
 {else}
 	<p>Basket is empty.</p>
 {/if}

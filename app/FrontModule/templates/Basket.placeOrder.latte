@@ -1,0 +1,38 @@
+{block #content}
+
+<h1>Place an order</h1>
+
+{form placeOrderForm}
+	{label name /}: {input name}<br />
+	{label address /}: {input address}<br />
+	{label paymentMethod /}: {input paymentMethod}<br />
+
+	<div id="creditCardFields">
+		{label ccCode /}: {input ccCode}<br />
+		{label ccExpirationMonth /}: {input ccExpirationMonth}<br />
+		{label ccExpirationYear /}: {input ccExpirationYear}<br />
+		{label ccCvc /}: {input ccCvc}<br />
+	</div>
+
+	{input submit}
+{/form}
+
+<script type="text/javascript">
+	$(function () {
+		showOrHide();
+	});
+
+	$('#frm-placeOrderForm-paymentMethod').change(function() {
+		showOrHide();
+	});
+
+	function showOrHide() {
+		var fields = $('#creditCardFields');
+		var val = $('#frm-placeOrderForm-paymentMethod').val();
+		if (val == 5 || val == 6) {
+			fields.show();
+		} else {
+			fields.hide();
+		}
+	}
+</script>
