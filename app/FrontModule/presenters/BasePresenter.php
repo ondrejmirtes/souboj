@@ -8,7 +8,7 @@ namespace FrontModule;
 abstract class BasePresenter extends \BasePresenter
 {
 
-	private $em;
+	protected $em;
 
 	protected function startup()
 	{

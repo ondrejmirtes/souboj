@@ -1,1 +1,13 @@
 {block #content}
+
+<h1>{$category->name}</h1>
+
+{if count($products) > 0}
+	{foreach $products as $product}
+		<h3>{$product->name}</h3>
+		<p>{$product->about}</p>
+		<p><strong>Price:</strong> {$product->price|number} Kč</p>
+	{/foreach}
+{else}
+	<p>Žádné produkty</p>
+{/if}
