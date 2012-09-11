@@ -1,0 +1,20 @@
+<html>
+	<head>
+		<script src="http://code.jquery.com/jquery-1.8.1.min.js"></script>
+		<script src="{$basePath}/js/netteForms.js"></script>
+	</head>
+
+<ul>
+	<li><a href="{link Category:}">Categories</a></li>
+	<li><a href="{link User:}">Users</a></li>
+	<li><a href="{link Product:}">Products</a></li>
+	<li><a href="{link Order:}">Orders</a></li>
+</ul>
+
+{foreach $flashes as $flash}
+	<div>{$flash->message}</div>
+{/foreach}
+
+{include #content}
+
+</html>

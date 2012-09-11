@@ -33,4 +33,44 @@ class OrderItem extends BaseEntity
 	 */
 	private $product;
 
+	public function getPrice()
+	{
+		return $this->price;
+	}
+
+	public function setPrice($price)
+	{
+		$this->price = $price;
+	}
+
+	public function getAmount()
+	{
+		return $this->amount;
+	}
+
+	public function setAmount($amount)
+	{
+		$this->amount = $amount;
+	}
+
+	public function getOrder()
+	{
+		return $this->order;
+	}
+
+	public function setOrder(Order $order)
+	{
+		$this->order = $order;
+	}
+
+	public function getProduct()
+	{
+		return $this->product;
+	}
+
+	public function setProduct(Product $product)
+	{
+		$this->product = $product;
+	}
+
 }

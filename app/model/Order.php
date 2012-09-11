@@ -139,7 +139,7 @@ class Order extends BaseEntity
 		return $this->user;
 	}
 
-	public function setUser(\User $user)
+	public function setUser(\User $user = NULL)
 	{
 		$this->user = $user;
 	}

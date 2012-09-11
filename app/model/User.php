@@ -38,6 +38,11 @@ class User extends BaseEntity
 		$this->admin = FALSE;
 	}
 
+	public function getUsername()
+	{
+		return $this->username;
+	}
+
 	public function setCredentials($username, $password)
 	{
 		$this->username = $username;

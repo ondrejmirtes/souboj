@@ -1,0 +1,15 @@
+{block #content}
+
+<h1>{$order->variableNumber}</h1>
+
+{control editForm}
+
+<h2>Items</h2>
+
+<a n:href="addItem $order->id">Add item</a>
+
+<ul>
+	{foreach $order->items as $item}
+		<li><a n:href="editItem $item->id">{$item->product->name}</a> (price: {$item->price} per 1; amount: {$item->amount}x) (<a n:href="deleteItem $item->id">delete</a>)</li>
+	{/foreach}
+</ul>

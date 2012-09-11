@@ -1,0 +1,11 @@
+{block #content}
+
+<h1>Users</h1>
+
+<a n:href="add">Add</a>
+
+<ul>
+	{foreach $users as $user}
+		<li><a n:href="edit $user->id">{$user->username}</a> (<a n:href="delete $user->id">delete</a>)</li>
+	{/foreach}
+</ul>

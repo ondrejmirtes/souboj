@@ -33,7 +33,7 @@ class Category extends BaseEntity
 		return $this->parent;
 	}
 
-	public function setParent(Category $category)
+	public function setParent(Category $category = NULL)
 	{
 		$this->parent = $category;
 	}

@@ -104,7 +104,7 @@ class Product extends BaseEntity
 		return $this->category;
 	}
 
-	public function setCategory(Category $category)
+	public function setCategory(Category $category = NULL)
 	{
 		$this->category = $category;
 	}

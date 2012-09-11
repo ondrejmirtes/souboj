@@ -1,0 +1,11 @@
+{block #content}
+
+<h1>Products</h1>
+
+<a n:href="add">Add</a>
+
+<ul>
+	{foreach $products as $product}
+		<li><a n:href="edit $product->id">{$product->name}</a> (<a n:href="delete $product->id">delete</a>)</li>
+	{/foreach}
+</ul>
