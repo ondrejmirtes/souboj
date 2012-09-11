@@ -36,7 +36,6 @@ class CategoryPresenter extends BasePresenter
 		$form->addText('name', 'Name');
 		$form->addText('url', 'URL')
 			->setRequired('URL is required')
-			->addRule(Form::URL, 'URL is malformed')
 			->addRule(function($control) use ($em, $that) {
 				$value = Strings::webalize($control->getValue());
 				$category = $em->getRepository('Category')->findOneByUrl($value);
