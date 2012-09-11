@@ -1,0 +1,7 @@
+<h1>Nová objednávka!</h1>
+
+<ul>
+	{foreach $items as $item}
+		<li>{$item->product->name} ({$item->amount}x {$item->price |number} Kč) = {$item->amount * $item->price |number} Kč</li>
+	{/foreach}
+</ul>

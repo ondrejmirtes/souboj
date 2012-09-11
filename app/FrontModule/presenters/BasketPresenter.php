@@ -7,6 +7,10 @@ use Nette\Application\UI\Form;
 class BasketPresenter extends BasePresenter
 {
 
+	const FROM_MAIL = 'eshop@mirtes.cz';
+
+	const TO_MAIL = 'ondrej@mirtes.cz';
+
 	protected function createComponentRemoveForm()
 	{
 		$form = new Form();
@@ -106,6 +110,7 @@ class BasketPresenter extends BasePresenter
 		$order->setAddress($values['address']);
 		$order->setPaymentMethod($values['paymentMethod']);
 
+		$items = array();
 		foreach ($this->getSession('basket')->items as $productId => $amount) {
 			$product = $this->getProduct($productId);
 			if ($amount > $product->amount) {
@@ -120,6 +125,8 @@ class BasketPresenter extends BasePresenter
 			$this->em->persist($item);
 
 			$product->setAmount($product->getAmount() - $amount);
+
+			$items[] = $item;
 		}
 
 		$this->em->persist($order);
@@ -127,8 +134,25 @@ class BasketPresenter extends BasePresenter
 
 		$this->getSession('basket')->items = array();
 
+		$this->sendMail($items);
+
 		$this->flashMessage('Order successfully placed. Thanks!');
 		$this->redirect('Homepage:');
+	}
+
+	public function sendMail(array $items)
+	{
+		$mail = new \Nette\Mail\Message();
+		$mail->setFrom(self::FROM_MAIL);
+		$mail->addTo(self::TO_MAIL);
+		$mail->setSubject('Nová objednávka');
+
+		$template = $this->createTemplate();
+		$template->setFile(__DIR__ . '/../templates/order.latte');
+		$template->items = $items;
+
+		$mail->setHtmlBody((string) $template);
+		$mail->send();
 	}
 
 }
