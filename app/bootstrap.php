@@ -32,8 +32,17 @@ $configurator->addConfig(__DIR__ . '/config/config.neon', FALSE)
 $container = $configurator->createContainer();
 
 // Setup router
-$container->router[] = new Route('index.php', 'Homepage:default', Route::ONE_WAY);
-$container->router[] = new Route('<presenter>/<action>[/<id>]', 'Homepage:default');
+$container->router[] = new Route('index.php', 'Front:Homepage:default', Route::ONE_WAY);
+$container->router[] = new Route('admin/<presenter>/<action>[/<id>]', array(
+	'module' => 'Admin',
+	'presenter' => 'Homepage',
+	'action' => 'default',
+));
+$container->router[] = new Route('<presenter>/<action>[/<id>]', array(
+	'module' => 'Front',
+	'presenter' => 'Homepage',
+	'action' => 'default',
+));
 
 // Doctrine EM
 $paths = array(__DIR__ . '/model');

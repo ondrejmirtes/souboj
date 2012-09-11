@@ -1,5 +1,7 @@
 <?php
 
+namespace FrontModule;
+
 use Nette\Application\UI;
 
 
