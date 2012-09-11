@@ -95,6 +95,12 @@ class BasketPresenter extends BasePresenter
 		$values = $form->getValues();
 
 		$order = new \Order();
+
+		if ($this->user->loggedIn) {
+			$user = $this->em->find('User', $this->user->identity->getId());
+			$order->setUser($user);
+		}
+
 		$order->setStatus(\OrderStatusEnum::NOT_TAKEN_OVER);
 		$order->setName($values['name']);
 		$order->setAddress($values['address']);
