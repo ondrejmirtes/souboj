@@ -7,8 +7,19 @@
 		<h3>{$product->name}</h3>
 		<p>{$product->about}</p>
 		<p><strong>Price:</strong> {$product->price|number} Kč</p>
-		<p><a n:href="addToBasket $product->id">Add to basket</a></p>
+		<p><a class="addToBasket" n:href="addToBasket $product->id">Add to basket</a></p>
 	{/foreach}
 {else}
 	<p>Žádné produkty</p>
 {/if}
+
+<script type="text/javascript">
+	$(function() {
+		$('a.addToBasket').click(function(e) {
+			e.preventDefault();
+			$.get(this.href, function(data) {
+				alert(data['message']);
+			});
+		});
+	});
+</script>

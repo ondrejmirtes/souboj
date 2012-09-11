@@ -32,13 +32,21 @@ class CategoryPresenter extends BasePresenter
 		}
 
 		if ($session->items[$productId] + 1 > $product->amount) {
-			$this->flashMessage('We do not have that many products of this type in stock');
+			$message = 'We do not have that many products of this type in stock';
+			unset($session->items[$productId]);
 		} else {
 			$session->items[$productId]++;
-			$this->flashMessage('Product added to basket');
+			$message = 'Product added to basket';
 		}
 
-		$this->redirect('default', $product->category->id);
+		if (!$this->isAjax()) {
+			$this->flashMessage($message);
+			$this->redirect('default', $product->category->id);
+		} else {
+			$this->sendResponse(new \Nette\Application\Responses\JsonResponse(array(
+				'message' => $message,
+			)));
+		}
 	}
 
 }
