@@ -18,6 +18,6 @@ nette:
 		expiration: 14 days
 
 services:
-
+	authenticator: Authenticator(@container)
 
 factories:

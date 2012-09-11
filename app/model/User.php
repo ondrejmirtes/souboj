@@ -50,6 +50,11 @@ class User extends BaseEntity
 		$this->password = self::hashPassword($password, $this->salt);
 	}
 
+	public function isEqualPassword($password)
+	{
+		return self::hashPassword($password, $this->salt) === $this->password;
+	}
+
 	public static function hashPassword($password, $salt)
 	{
 		return hash_hmac('sha256', $password, $salt);
