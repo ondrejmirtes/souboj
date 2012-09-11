@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SHOP>
+	{foreach $products as $product}
+		<SHOPITEM>
+			<PRODUCT>{$product->name}</PRODUCT>
+			<DESCRIPTION>{$product->about}</DESCRIPTION>
+			<URL>{link //Category: $product->category->id}#produkt-{$product->id}</URL>
+			<ITEM_TYPE>new</ITEM_TYPE>
+
+			{if $product->deliveryDate}
+				<DELIVERY_DATE>{$product->deliveryDate}</DELIVERY_DATE>
+			{/if}
+
+			<IMGURL>img</IMGURL>
+			<PRICE_VAT>{$product->price}</PRICE_VAT>
+		</SHOPITEM>
+	{/foreach}
+</SHOP>

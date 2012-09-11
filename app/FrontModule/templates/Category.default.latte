@@ -4,7 +4,7 @@
 
 {if count($products) > 0}
 	{foreach $products as $product}
-		<h3>{$product->name}</h3>
+		<h3 id="produkt-{$product->id}">{$product->name}</h3>
 		<p>{$product->about}</p>
 		<p><strong>Price:</strong> {$product->price|number} Kč</p>
 		<p>Number of orders placed for this product: <span class="orderCount" data-href="{link productCount $product->id}">{$presenter->getProductCount($product->id)}</span></p>
